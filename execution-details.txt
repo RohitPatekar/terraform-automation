@@ -1,0 +1,529 @@
+PS C:\Rohit\terraform> terraform plan                                                                                                                                                  
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.rohit-ec2-instance will be created
+  + resource "aws_instance" "rohit-ec2-instance" {
+      + ami                          = "ami-0742b4e673072066f"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = true
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "rohit-kp"
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + secondary_private_ips        = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = (known after apply)
+      + tags                         = {
+          + "Name" = "rohit-ec2-instance"
+        }
+      + tenancy                      = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_internet_gateway.rohit-igw will be created
+  + resource "aws_internet_gateway" "rohit-igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "terraform-aws-igw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_key_pair.rohit-key-pair will be created
+  + resource "aws_key_pair" "rohit-key-pair" {
+      + arn         = (known after apply)
+      + fingerprint = (known after apply)
+      + id          = (known after apply)
+      + key_name    = "rohit-kp"
+      + key_pair_id = (known after apply)
+      + public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgP/4zT+8mAuZqHAcazN1CU1OQjBZu5Zk4jM0oh14FbZI1eJsTlubbjYAHx5cNik9hpPOgHv38g87DfYsVR8SlyL0eLOxbQleC6E5PoPC7aWIC5VCGKjiQDst2k9JRjCJzzncU2dm7DqE9teFYbvxjx7tNkuXd67/EpA1y3UHD2LZUFDqnQvDeCGa0YpDT8kpu8ZXmdn+9YC+CzzywX4zW8T2mXmGRZjA2guAb4zQ2gmJa7ZU9sgh7LxZqWrYwAgOtV82LzHFJ5tWV6G4u//6nhpGpNzVICt7WfPK9HkAaHCYGkfodFNOrKK/TW2LJUyjapy/oKXWfkaIUCEZxGlnQQ== rsa-key-20210427"
+    }
+
+  # aws_route_table.rohit-pub-rt will be created
+  + resource "aws_route_table" "rohit-pub-rt" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "terraform-public-route"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.rohit-pub-rta will be created
+  + resource "aws_route_table_association" "rohit-pub-rta" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_security_group.rohit-sg will be created
+  + resource "aws_security_group" "rohit-sg" {
+      + arn                    = (known after apply)
+      + description            = "Security Group for EC2"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "SSH from everywhere"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "APPSG"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "terraform-security-group"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_subnet.rohit-pub-sub will be created
+  + resource "aws_subnet" "rohit-pub-sub" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = (known after apply)
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "terraform-public-subnet"
+        }
+      + tags_all                        = {
+          + "Name" = "terraform-public-subnet"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.rohit-vpc will be created
+  + resource "aws_vpc" "rohit-vpc" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "terraform-aws-vpc"
+        }
+      + tags_all                         = {
+          + "Name" = "terraform-aws-vpc"
+        }
+    }
+
+Plan: 8 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + rohit-public-ip = (known after apply)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
+PS C:\Rohit\terraform> terraform apply                                                                                                                                                 
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.rohit-ec2-instance will be created
+  + resource "aws_instance" "rohit-ec2-instance" {
+      + ami                          = "ami-0742b4e673072066f"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = true
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "rohit-kp"
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + secondary_private_ips        = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = (known after apply)
+      + tags                         = {
+          + "Name" = "rohit-ec2-instance"
+        }
+      + tenancy                      = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_internet_gateway.rohit-igw will be created
+  + resource "aws_internet_gateway" "rohit-igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "terraform-aws-igw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_key_pair.rohit-key-pair will be created
+  + resource "aws_key_pair" "rohit-key-pair" {
+      + arn         = (known after apply)
+      + fingerprint = (known after apply)
+      + id          = (known after apply)
+      + key_name    = "rohit-kp"
+      + key_pair_id = (known after apply)
+      + public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgP/4zT+8mAuZqHAcazN1CU1OQjBZu5Zk4jM0oh14FbZI1eJsTlubbjYAHx5cNik9hpPOgHv38g87DfYsVR8SlyL0eLOxbQleC6E5PoPC7aWIC5VCGKjiQDst2k9JRjCJzzncU2dm7DqE9teFYbvxjx7tNkuXd67/EpA1y3UHD2LZUFDqnQvDeCGa0YpDT8kpu8ZXmdn+9YC+CzzywX4zW8T2mXmGRZjA2guAb4zQ2gmJa7ZU9sgh7LxZqWrYwAgOtV82LzHFJ5tWV6G4u//6nhpGpNzVICt7WfPK9HkAaHCYGkfodFNOrKK/TW2LJUyjapy/oKXWfkaIUCEZxGlnQQ== rsa-key-20210427"
+    }
+
+  # aws_route_table.rohit-pub-rt will be created
+  + resource "aws_route_table" "rohit-pub-rt" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "terraform-public-route"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.rohit-pub-rta will be created
+  + resource "aws_route_table_association" "rohit-pub-rta" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_security_group.rohit-sg will be created
+  + resource "aws_security_group" "rohit-sg" {
+      + arn                    = (known after apply)
+      + description            = "Security Group for EC2"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "SSH from everywhere"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "APPSG"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "terraform-security-group"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_subnet.rohit-pub-sub will be created
+  + resource "aws_subnet" "rohit-pub-sub" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = (known after apply)
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "terraform-public-subnet"
+        }
+      + tags_all                        = {
+          + "Name" = "terraform-public-subnet"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.rohit-vpc will be created
+  + resource "aws_vpc" "rohit-vpc" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "terraform-aws-vpc"
+        }
+      + tags_all                         = {
+          + "Name" = "terraform-aws-vpc"
+        }
+    }
+
+Plan: 8 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + rohit-public-ip = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_key_pair.rohit-key-pair: Creating...
+aws_vpc.rohit-vpc: Creating...
+aws_key_pair.rohit-key-pair: Creation complete after 3s [id=rohit-kp]
+aws_vpc.rohit-vpc: Still creating... [10s elapsed]
+aws_vpc.rohit-vpc: Still creating... [20s elapsed]
+aws_vpc.rohit-vpc: Creation complete after 28s [id=vpc-0d26d46f2a632bd94]
+aws_internet_gateway.rohit-igw: Creating...
+aws_subnet.rohit-pub-sub: Creating...
+aws_security_group.rohit-sg: Creating...
+aws_subnet.rohit-pub-sub: Creation complete after 6s [id=subnet-0e0306bacdf2a2407]
+aws_internet_gateway.rohit-igw: Creation complete after 8s [id=igw-009d25dbf33b12c31]
+aws_route_table.rohit-pub-rt: Creating...
+aws_security_group.rohit-sg: Still creating... [10s elapsed]
+aws_security_group.rohit-sg: Creation complete after 12s [id=sg-067fea6c50359cfdc]
+aws_instance.rohit-ec2-instance: Creating...
+aws_route_table.rohit-pub-rt: Creation complete after 6s [id=rtb-055c2bd4d4e659811]
+aws_route_table_association.rohit-pub-rta: Creating...
+aws_route_table_association.rohit-pub-rta: Creation complete after 1s [id=rtbassoc-05467d46f4f1d73fa]
+aws_instance.rohit-ec2-instance: Still creating... [10s elapsed]
+aws_instance.rohit-ec2-instance: Still creating... [20s elapsed]
+aws_instance.rohit-ec2-instance: Still creating... [30s elapsed]
+aws_instance.rohit-ec2-instance: Creation complete after 36s [id=i-097e50b40fb83dbef]
+
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+rohit-public-ip = "34.229.131.80"
